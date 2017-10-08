@@ -1,15 +1,12 @@
 Module.register("MMM-ShowTeamLogo",{
     defaults: {
-        text: "Hello World!",
-        lists: "some list",
+        height: "100px",
         width: "100px",
         options: {
           url: 'http://api.football-data.org/v1/soccerseasons/', 
           headers: {'X-Auth-Token': 'YOUR_TOKEN'},
           shortNameLeague: "BL1",
           shortNameTeam: "HSV",
-          nextGamesView: 4,
-          lastGamesView: 4,
         },
     },
 
@@ -30,10 +27,12 @@ Module.register("MMM-ShowTeamLogo",{
           wrapper.innerHTML = "Keine Logo gefunden"
         }
         else{
-            wrapper.style.height = "150px";
-            wrapper.style.width = "200px";
             wrapper.style.backgroundImage = "url('" + this.logoPath + "')";
-            wrapper.style.backgroundSize = "cover";
+            wrapper.style.height = "100%";
+            wrapper.style.backgroundRepeat= 'no-repeat';
+            wrapper.style.minHeight = this.config.height;
+            wrapper.style.minWidth = this.config.width;
+            wrapper.style.backgroundSize = "contain";
         }
         return wrapper;
     },
